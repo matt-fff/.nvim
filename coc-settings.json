@@ -1,0 +1,11 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "python",
+    "json",
+    "typescript",
+    "typescript.tsx",
+    "typescriptreact",
+    "javascript"
+  ],
+  "python.formatting.provider": "black"
+}
