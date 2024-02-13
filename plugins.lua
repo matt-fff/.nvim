@@ -138,7 +138,8 @@ require("telescope").setup({
   }
 })
 
-require('telescope').load_extension('fzf')
+-- TODO figure out why this keeps breaking installs
+-- require('telescope').load_extension('fzf')
 
 -- Trunk configuration
 require("trunk").setup({
