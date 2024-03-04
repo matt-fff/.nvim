@@ -143,7 +143,7 @@ require("telescope").setup({
 
 -- Trunk configuration
 require("trunk").setup({
-  formatOnSave = false
+  formatOnSave = true
 })
 
 
