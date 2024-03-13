@@ -1,30 +1,7 @@
-call plug#begin()
-Plug 'tpope/vim-fugitive'
-Plug 'wesQ3/vim-windowswap'
-Plug 'preservim/nerdcommenter'
-Plug 'itchyny/lightline.vim'
-Plug 'janko-m/vim-test'
-Plug 'kyazdani42/nvim-web-devicons' "for file icons
-Plug 'kyazdani42/nvim-tree.lua'
-Plug 'ryanoasis/vim-devicons'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'morhetz/gruvbox'
-Plug 'chaoren/vim-wordmotion'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '*' }
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'salkin-mada/openscad.nvim'
-Plug 'trunk-io/neovim-trunk', { 'tag': '*' }
-Plug 'neovim/nvim-lspconfig'
-
-call plug#end()
-
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " Because it takes like 4 commands to get shit going
-command! Updoom so $MYVIMRC | PlugClean | PlugUpdate | CocUpdate
+command! Updoom so $MYVIMRC | CocUpdate
 
 "
 " Theme

@@ -1,4 +1,49 @@
 
+-- Setup the plugin manager, if it's missing
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  "wesQ3/vim-windowswap",
+  "preservim/nerdcommenter",
+  "itchyny/lightline.vim",
+  "vim-test/vim-test",
+  "kyazdani42/nvim-web-devicons",
+  "kyazdani42/nvim-tree.lua",
+  "ryanoasis/vim-devicons",
+  {"neoclide/coc.nvim", branch = "release"},
+  "morhetz/gruvbox",
+  "chaoren/vim-wordmotion",
+  "editorconfig/editorconfig-vim",
+  "nvim-lua/plenary.nvim",
+  {
+    "nvim-telescope/telescope.nvim", tag = "0.1.5",
+      dependencies = { "nvim-lua/plenary.nvim" }
+  },
+  {"nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  "salkin-mada/openscad.nvim",
+  {
+		"trunk-io/neovim-trunk",
+		lazy = false,
+		config = {
+			formatOnSave = false,
+      formatOnSaveTimeout = 10,
+		},
+		main = "trunk",
+		dependencies = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"}
+	},
+  "neovim/nvim-lspconfig",
+})
 
 --------------------------------------------------
 
@@ -141,12 +186,6 @@ require("telescope").setup({
 -- If this throws an error, it may be because you don't have cmake
 -- on your system. It's currently used by Plug to build telescope-fzf-native
 require('telescope').load_extension('fzf')
-
--- Trunk configuration
-require("trunk").setup({
-  formatOnSave = false
-})
-
 
 -- LSP Configuration
 local lspconfig = require('lspconfig')
