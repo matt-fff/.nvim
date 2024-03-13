@@ -138,8 +138,9 @@ require("telescope").setup({
   }
 })
 
--- TODO figure out why this keeps breaking installs
--- require('telescope').load_extension('fzf')
+-- If this throws an error, it may be because you don't have cmake
+-- on your system. It's currently used by Plug to build telescope-fzf-native
+require('telescope').load_extension('fzf')
 
 -- Trunk configuration
 require("trunk").setup({
