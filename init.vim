@@ -1,3 +1,4 @@
+luafile $HOME/.config/nvim/plugins.lua
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " Because it takes like 4 commands to get shit going
@@ -274,4 +275,3 @@ set softtabstop =2
 set shiftwidth  =2
 set expandtab
 
-luafile $HOME/.config/nvim/plugins.lua
