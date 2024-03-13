@@ -176,7 +176,7 @@ let g:lightline = {
 "
 " coc
 "
-let g:coc_global_extensions = ['coc-yaml', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-rls', 'coc-pyright', 'coc-eslint', 'coc-tslint-plugin', 'coc-tsserver', 'coc-vetur', 'coc-split-term', 'coc-fish']
+let g:coc_global_extensions = ['coc-yaml', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-rust-analyzer', 'coc-pyright', 'coc-eslint', 'coc-tslint-plugin', 'coc-tsserver', 'coc-vetur', 'coc-split-term', 'coc-fish']
 
 "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
