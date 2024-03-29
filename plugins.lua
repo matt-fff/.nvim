@@ -3,7 +3,7 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-    "git",
+r   "git",
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
@@ -16,7 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   "wesQ3/vim-windowswap",
   "preservim/nerdcommenter",
-  "itchyny/lightline.vim",
+  {"itchyny/lightline.vim" },
   "vim-test/vim-test",
   "kyazdani42/nvim-web-devicons",
   "kyazdani42/nvim-tree.lua",
@@ -33,17 +33,24 @@ require("lazy").setup({
   {"nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   "salkin-mada/openscad.nvim",
   {
-		"trunk-io/neovim-trunk",
-		lazy = false,
-		config = {
-			formatOnSave = false,
-      formatOnSaveTimeout = 10,
-		},
-		main = "trunk",
-		dependencies = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"}
-	},
+    "trunk-io/neovim-trunk",
+    lazy = false,
+    commit = "7328170011ccba48b235603637dc946312ec464e",
+    config = {
+      trunkPath = "/home/matt/Workspaces/matt-fff/urlup-org/urlup-be/.trunk/tools/trunk",
+      formatOnSave = true,
+      formatOnSaveTimeout = 10, -- seconds
+      logLevel = "debug" -- you can remove this after it's stabilized
+    },
+    main = "trunk",
+    dependencies = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"}
+  },
   "neovim/nvim-lspconfig",
+  "https://gitlab.com/code-stats/code-stats-vim.git",
 })
+
+-- TODO broken. Use something like chezmoi to address this.
+vim.g.codestats_api_key = vim.env.CODESTATS_API_KEY
 
 --------------------------------------------------
 
@@ -187,8 +194,22 @@ require("telescope").setup({
 -- on your system. It's currently used by Plug to build telescope-fzf-native
 require('telescope').load_extension('fzf')
 
+
 -- LSP Configuration
 local lspconfig = require('lspconfig')
 
 -- To install: cargo install openscad-lsp
 lspconfig.openscad_lsp.setup{}
+
+
+vim.g.lightline = {
+  colorscheme = 'deus',
+  active = {
+    right = {{ 'paste' }, {'readonly', 'modified', 'cocstat', 'cocfunc', 'codestat'}}
+  },
+      component =  {
+         cocstat = '%{coc#status()}',
+         cocfunc = '%{get(b:,"coc_current_function")}',
+         codestat = '%{CodeStatsXp()}'
+       },
+}

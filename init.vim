@@ -1,8 +1,8 @@
 luafile $HOME/.config/nvim/plugins.lua
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
-" Because it takes like 4 commands to get shit going
-command! Updoom so $MYVIMRC | CocUpdate
+" Left for historical reasons
+command! Updoom CocUpdate
 
 "
 " Theme
@@ -26,7 +26,7 @@ command W w
 "command ц w
 "command Ц w
 
-" Russian remapping
+" Cyrillic remapping
 nnoremap ё `
 nnoremap й q
 nnoremap ц w
@@ -117,7 +117,7 @@ nmap <silent> <Leader>s :TestSuite<CR>
 nmap <silent> <Leader>l :TestLast<CR>
 nmap <silent> <Leader>g :TestVisit<CR>
 
-" So I don't get fucked when I accidentally hit Ctrl-z
+" So I don't lose everything when I accidentally hit Ctrl-z
 nnoremap <c-z> <nop>
 
 " use alt+hjkl to move between split/vsplit panels
@@ -140,17 +140,7 @@ nnoremap <A-л> <C-ц>л
 nnoremap <A-д> <C-ц>д
 
 set noshowmode
-let g:lightline = {
-      \ 'colorscheme': 'deus',
-      \ 'active': {
-      \   'right': [ [ 'paste' ],
-      \             [ 'readonly', 'modified', 'cocstat', 'cocfunc' ] ]
-      \ },
-      \ 'component': {
-      \   'cocstat': '%{coc#status()}',
-      \   'cocfunc': '%{get(b:,"coc_current_function")}',
-      \ },
-      \ }
+
 "
 " coc
 "
