@@ -15,8 +15,11 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   "wesQ3/vim-windowswap",
-  "preservim/nerdcommenter",
-  {"itchyny/lightline.vim" },
+  {
+    "numToStr/Comment.nvim",
+    lazy = false,
+  },
+  {"itchyny/lightline.vim"},
   "vim-test/vim-test",
   "kyazdani42/nvim-web-devicons",
   "kyazdani42/nvim-tree.lua",
@@ -35,9 +38,9 @@ require("lazy").setup({
   {
     "trunk-io/neovim-trunk",
     lazy = false,
-    commit = "7328170011ccba48b235603637dc946312ec464e",
+    -- commit = "7328170011ccba48b235603637dc946312ec464e",
     config = {
-      trunkPath = "/home/matt/Workspaces/matt-fff/urlup-org/urlup-be/.trunk/tools/trunk",
+      -- trunkPath = "/home/matt/Workspaces/matt-fff/urlup-org/urlup-be/.trunk/tools/trunk",
       formatOnSave = true,
       formatOnSaveTimeout = 10, -- seconds
       logLevel = "debug" -- you can remove this after it's stabilized
@@ -46,11 +49,11 @@ require("lazy").setup({
     dependencies = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"}
   },
   "neovim/nvim-lspconfig",
-  "https://gitlab.com/code-stats/code-stats-vim.git",
+  -- "https://gitlab.com/code-stats/code-stats-vim.git",
 })
 
 -- TODO broken. Use something like chezmoi to address this.
-vim.g.codestats_api_key = vim.env.CODESTATS_API_KEY
+-- vim.g.codestats_api_key = vim.env.CODESTATS_API_KEY
 
 --------------------------------------------------
 
@@ -205,11 +208,59 @@ lspconfig.openscad_lsp.setup{}
 vim.g.lightline = {
   colorscheme = 'deus',
   active = {
-    right = {{ 'paste' }, {'readonly', 'modified', 'cocstat', 'cocfunc', 'codestat'}}
+    right = {{ 'paste' }, {'readonly', 'modified', 'cocstat', 'cocfunc' }}
   },
       component =  {
          cocstat = '%{coc#status()}',
          cocfunc = '%{get(b:,"coc_current_function")}',
-         codestat = '%{CodeStatsXp()}'
+         -- codestat = '%{CodeStatsXp()}'
        },
 }
+
+
+-- Comment
+require('Comment').setup(
+{
+    ---Add a space b/w comment and the line
+    padding = true,
+    ---Whether the cursor should stay at its position
+    sticky = true,
+    ---Lines to be ignored while (un)comment
+    ignore = nil,
+    ---LHS of toggle mappings in NORMAL mode
+    toggler = {
+        ---Line-comment toggle keymap
+        line = ' c ',
+        ---Block-comment toggle keymap
+        block = ' b ',
+    },
+    ---LHS of operator-pending mappings in NORMAL and VISUAL mode
+    opleader = {
+        ---Line-comment keymap
+        line = ' c ',
+        ---Block-comment keymap
+        block = ' b ',
+    },
+    ---LHS of extra mappings
+    extra = {
+        ---Add comment on the line above
+        above = 'gcO',
+        ---Add comment on the line below
+        below = 'gco',
+        ---Add comment at the end of line
+        eol = 'gcA',
+    },
+    ---Enable keybindings
+    ---NOTE: If given `false` then the plugin won't create any mappings
+    mappings = {
+        ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
+        basic = true,
+        ---Extra mapping; `gco`, `gcO`, `gcA`
+        extra = true,
+    },
+    ---Function to call before (un)comment
+    pre_hook = nil,
+    ---Function to call after (un)comment
+    post_hook = nil,
+}
+)
