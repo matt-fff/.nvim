@@ -1,3 +1,6 @@
+vim.opt.ignorecase = true -- search case insensitive
+vim.opt.smartcase = true -- search matters if capital letter
+vim.opt.inccommand = "split" -- "for incsearch while sub
 
 -- Setup the plugin manager, if it's missing
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
