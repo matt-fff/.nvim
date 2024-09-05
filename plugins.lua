@@ -52,6 +52,7 @@ require("lazy").setup({
     dependencies = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"}
   },
   "neovim/nvim-lspconfig",
+  "tpope/vim-fugitive"
   -- "https://gitlab.com/code-stats/code-stats-vim.git",
 })
 
