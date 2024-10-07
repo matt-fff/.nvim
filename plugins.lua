@@ -17,6 +17,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  {'altermo/nwm',branch='x11'},
   "wesQ3/vim-windowswap",
   {
     "numToStr/Comment.nvim",
@@ -41,7 +42,6 @@ require("lazy").setup({
   {
     "trunk-io/neovim-trunk",
     lazy = false,
-    -- commit = "7328170011ccba48b235603637dc946312ec464e",
     config = {
       -- trunkPath = "/home/matt/Workspaces/matt-fff/urlup-org/urlup-be/.trunk/tools/trunk",
       formatOnSave = true,
@@ -52,7 +52,58 @@ require("lazy").setup({
     dependencies = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"}
   },
   "neovim/nvim-lspconfig",
-  "tpope/vim-fugitive"
+  "tpope/vim-fugitive",
+  {
+      'yetone/avante.nvim',
+      event = 'VeryLazy',
+      lazy = false,
+      -- version = false, -- set this if you want to always pull the latest change
+      version = false,
+      opts = {
+        provider = 'claude',
+        -- provider = 'copilot'
+        mappings = {
+          suggestion = {
+            dismiss = '<C-d>',
+          },
+        },
+      },
+      build = "make",
+      dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        "stevearc/dressing.nvim",
+        "nvim-lua/plenary.nvim",
+        "MunifTanjim/nui.nvim",
+        --- The below dependencies are optional,
+        "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+        "zbirenbaum/copilot.lua", -- for providers='copilot'
+        {
+          -- support for image pasting
+          "HakonHarnes/img-clip.nvim",
+          event = "VeryLazy",
+          opts = {
+            -- recommended settings
+            default = {
+              embed_image_as_base64 = false,
+              prompt_for_file_name = false,
+              drag_and_drop = {
+                insert_mode = true,
+              },
+              -- required for Windows users
+              use_absolute_path = true,
+            },
+          },
+        },
+        {
+          -- Make sure to set this up properly if you have lazy=true
+          'MeanderingProgrammer/render-markdown.nvim',
+          opts = {
+            file_types = { "markdown", "Avante" },
+          },
+          ft = { "markdown", "Avante" },
+        },
+      },
+  },
   -- "https://gitlab.com/code-stats/code-stats-vim.git",
 })
 
